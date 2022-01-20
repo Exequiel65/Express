@@ -1,37 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pimienta & sal</title>
-    <link rel="stylesheet" href="../public/css/style.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
+  <%- include('./partials/head') %> 
   <body>
-    <!-- Navbar (sit on top) -->
-    <nav class="ps-top">
-      <div class="ps-bar ps-white ps-padding ps-card ps-nav">
-        <a href="#home" class="ps-bar-item ps-button">Pimienta & Sal</a>
-        <!-- Right-sided navbar links. Hide them on small screens -->
-        <div class="ps-right ps-hide-small">
-          <a href="#about" class="ps-bar-item ps-button">About</a>
-          <a href="#menu" class="ps-bar-item ps-button">Menu</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Header -->
-    <header class="ps-display-container ps-content ps-wide" id="home">
-      <img
-        class="ps-image"
-        src="../public/images/header.jpg"
-        alt="Pimienta & Sal"
-        width="1600"
-        height="800"
-      />
-      <div class="ps-display-bottomleft ps-padding-large ps-opacity">
-        <h1 class="ps-xxlarge">Sabores que enamoran</h1>
-      </div>
-    </header>
+    <%- include('./partials/header') %>
 
     <!-- Page content -->
     <div class="ps-content">
@@ -75,29 +46,16 @@
         <div class="ps-col l6 ps-padding-large">
           <h1 class="ps-center">Nuentro Menu</h1>
           <br />
-          <h4>Carpaccio fresco</h4>
-          <p class="ps-text-grey">
-            Entrada Carpaccio de salmón con cítricos U$S 65.50
-          </p>
-          <br />
+          
+          <% products.forEach(product => { %>
+            <a href="/detalle/<%= product.id %>"><h4><%= product.nombre %> </h4></a>
+            <p class="ps-text-grey">
+              <%= product.descripcion %> U$S <%= product.precio %>
+            </p>
+            <br />
+          <% }) %>
 
-          <h4>Risotto de berenjena</h4>
-          <p class="ps-text-grey">
-            Risotto de berenjena y queso de cabra U$S 47.00
-          </p>
-          <br />
-
-          <h4>Mousse de arroz</h4>
-          <p class="ps-text-grey">
-            Mousse de arroz con leche y aroma de azahar U$S 27.50
-          </p>
-          <br />
-
-          <h4>Espárragos blancos</h4>
-          <p class="ps-text-grey">
-            Espárragos blancos con vinagreta de verduras y jamón ibérico U$S
-            37.50
-          </p>
+          
         </div>
 
         <div class="ps-col l6 ps-padding-large ps-img-menu">
@@ -110,9 +68,7 @@
       </div>
 
       <!-- Footer -->
-      <footer class="ps-center ps-light-grey ps-padding-32">
-        <p>Powered by Pimienta & Sal</p>
-      </footer>
+      <%- include('./partials/footer') %> 
     </div>
   </body>
 </html>
