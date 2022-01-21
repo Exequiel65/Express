@@ -1,44 +1,63 @@
 const fs = require('fs');
 const path = require('path');
 
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+let {products} = require('../data/database')
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
-		// Do the magic
+		res.render('products',{
+			products,
+			toThousand
+		})
 	},
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		// Do the magic
+		let idProduct = +req.params.id
+		let product = products.find(product => product.id === idProduct)
+
+		res.render('detail',{
+			product,
+			toThousand
+		})
 	},
 
 	// Create - Form to create
 	create: (req, res) => {
-		// Do the magic
+		res.render('product-create-form')
 	},
 	
 	// Create -  Method to store
 	store: (req, res) => {
-		// Do the magic
+		res.send(req.body)
 	},
 
 	// Update - Form to edit
 	edit: (req, res) => {
-		// Do the magic
+		let idProduct = +req.params.id
+		let product = products.find(product => product.id === idProduct)
+
+		res.render('product-edit-form',{
+			product,
+		})
 	},
 	// Update - Method to update
 	update: (req, res) => {
-		// Do the magic
+		let idProduct = +req.params.id
+		
+		res.send(req.body)
+
 	},
 
 	// Delete - Delete one product from DB
 	destroy : (req, res) => {
-		// Do the magic
+		let idProduct = +req.params.id
+		let product = products.find(product => product.id === idProduct)
+
+		res.send(`Producto ${product.name}, id ${product.id} ha sido borrado`)
 	}
 };
 

@@ -12,7 +12,8 @@ const controller = {
 		
 		res.render('index', {
 			visited : ultimosVisitados,
-			inSale
+			inSale,
+			toThousand
 		})
 	},
 	search: (req, res) => {
